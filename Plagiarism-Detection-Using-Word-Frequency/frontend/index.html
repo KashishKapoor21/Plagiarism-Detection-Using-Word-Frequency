@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOPPEL | Text Similarity Detector</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="site-wrapper">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="#home" class="brand">
+            <span class="brand-icon">D</span>
+            <span>DOPPEL</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home" class="nav-link active" id="homeNav">Home</a>
+            <a href="#dashboard" class="nav-link" id="dashboardNav">Dashboard</a>
+            <a href="#reports" class="nav-link" id="reportsNav">History</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HOME -->
+    <section class="home-section" id="home">
+
+        <div class="hero-content">
+
+            <!-- Cute ghosts -->
+            <div class="ghosts">
+
+                <svg viewBox="0 0 100 120" class="ghost ghost-one">
+                    <path d="M10 50 C10 20 30 5 50 5 C70 5 90 20 90 50 L90 110 L75 98 L60 110 L45 98 L30 110 L10 98 Z"
+                          fill="#F7F4D5"/>
+
+                    <circle cx="38" cy="48" r="6" fill="#0A3323"/>
+                    <circle cx="62" cy="48" r="6" fill="#0A3323"/>
+
+                    <ellipse cx="25" cy="65" rx="8" ry="5" fill="#D3968C"/>
+                    <ellipse cx="75" cy="65" rx="8" ry="5" fill="#D3968C"/>
+
+                    <path d="M40 68 Q50 78 60 68"
+                          stroke="#0A3323"
+                          stroke-width="4"
+                          fill="none"
+                          stroke-linecap="round"/>
+                </svg>
+
+                <svg viewBox="0 0 100 120" class="ghost ghost-two">
+                    <path d="M10 50 C10 20 30 5 50 5 C70 5 90 20 90 50 L90 110 L75 98 L60 110 L45 98 L30 110 L10 98 Z"
+                          fill="#D3968C"/>
+
+                    <circle cx="38" cy="48" r="6" fill="#0A3323"/>
+                    <circle cx="62" cy="48" r="6" fill="#0A3323"/>
+
+                    <ellipse cx="25" cy="65" rx="8" ry="5" fill="#F7F4D5"/>
+                    <ellipse cx="75" cy="65" rx="8" ry="5" fill="#F7F4D5"/>
+
+                    <path d="M40 68 Q50 78 60 68"
+                          stroke="#0A3323"
+                          stroke-width="4"
+                          fill="none"
+                          stroke-linecap="round"/>
+                </svg>
+
+            </div>
+
+
+            <div class="hero-brand">
+
+                <strong>DOPPEL</strong>
+            </div>
+
+
+            <h1>
+                Spot similar text<br>
+                <span>in seconds.</span>
+            </h1>
+
+            <p class="hero-description">
+                Compare documents, find what they share,
+                and get a similarity score right away.
+            </p>
+
+
+            <a href="#dashboard" class="get-started-button">
+                Get started ↓
+            </a>
+
+
+            <p class="hero-credit">
+                Made by Team Tech Tashans
+            </p>
+
+        </div>
+
+
+        <!-- Feature Cards -->
+        <div class="feature-cards">
+
+            <div class="feature-card">
+                <h3>Drop in your files</h3>
+                <p>
+                    Upload two or more .txt documents
+                    and compare them instantly.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>See the score</h3>
+                <p>
+                    Every pair gets a similarity percentage
+                    and a clear label.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Find shared phrases</h3>
+                <p>
+                    Doppel shows the exact wording
+                    the documents have in common.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- DASHBOARD -->
+    <main class="dashboard-section" id="dashboard">
+
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <p>Upload documents and compare how much they overlap.</p>
+        </div>
+
+
+        <!-- Stats -->
+        <section class="stats-container">
+
+            <div class="stat-card">
+                <h2 id="totalDocuments">0</h2>
+                <p>Documents</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="totalComparisons">0</h2>
+                <p>Comparisons</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="highSimilarity">0</h2>
+                <p>High similarity</p>
+            </div>
+
+        </section>
+
+
+        <!-- Upload -->
+        <section class="panel upload-section">
+
+            <h2>Upload documents</h2>
+
+            <div class="upload-box" id="uploadBox">
+
+                <div class="upload-symbol">↑</div>
+
+                <h3>Drag and drop your files here</h3>
+
+                <p>or browse your computer</p>
+
+                <input
+                        type="file"
+                        id="fileInput"
+                        multiple
+                        accept=".txt"
+                >
+
+                <button id="browseButton">
+                    Browse files
+                </button>
+
+                <p class="file-info">
+                    Supported format: .txt
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Documents -->
+        <section class="panel documents-section" id="documents">
+
+            <div class="section-heading">
+
+                <h2>Uploaded documents</h2>
+
+                <span id="documentCount">0 files</span>
+
+            </div>
+
+            <div id="documentList" class="document-list">
+
+                <div class="empty-state">
+                    No documents uploaded yet.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Compare -->
+        <div class="compare-section">
+
+            <button id="compareButton" disabled>
+                Compare documents
+            </button>
+
+        </div>
+
+
+        <!-- Results -->
+        <section class="panel results-section" id="resultsSection">
+
+            <div class="results-heading">
+
+                <h2>Analysis results</h2>
+
+                <button id="downloadReportButton" disabled>
+                    Download report
+                </button>
+
+            </div>
+
+            <div id="resultsContainer">
+
+                <div class="empty-state">
+                    Your comparison results will appear here.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- HISTORY -->
+    <section class="history-section" id="reports">
+
+        <div class="history-header">
+
+            <h1>Comparison history</h1>
+
+            <p id="latestComparison">
+                Your previous comparisons
+            </p>
+
+        </div>
+
+
+        <!-- History statistics -->
+        <div class="history-stats">
+
+            <div class="history-stat">
+                <h2 id="historyTotal">0</h2>
+                <p>Reports</p>
+            </div>
+
+            <div class="history-stat">
+                <h2 id="historyHighest">0%</h2>
+                <p>Highest similarity</p>
+            </div>
+
+            <div class="history-stat">
+                <h2 id="historyAverage">0%</h2>
+                <p>Average similarity</p>
+            </div>
+
+        </div>
+
+
+        <div class="history-controls">
+
+            <div class="history-filters">
+                <button class="filter-button active" data-filter="all">All</button>
+                <button class="filter-button" data-filter="very high">Very high</button>
+                <button class="filter-button" data-filter="high">High</button>
+                <button class="filter-button" data-filter="moderate">Moderate</button>
+                <button class="filter-button" data-filter="low">Low</button>
+            </div>
+
+            <button id="refreshReportsButton" class="refresh-button">
+                ↻ Refresh history
+            </button>
+
+        </div>
+
+
+        <div id="reportsContainer">
+
+            <div class="empty-state">
+                No previous comparison reports found.
+            </div>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
